@@ -4,8 +4,7 @@ import requests
 def consultar_personajes(url):
     respuesta = requests.get(url)
     if respuesta.status_code == 200:
-        diccionario = json.loads(respuesta.text)
-        # lo de arriba lo transforma a el formato json
+        diccionario = json.loads(respuesta.text)       
         return diccionario
     else:
         print('nope')
@@ -22,15 +21,13 @@ while(urlbase['next'] is not None):
     urlbase = consultar_personajes(urlbase['next'])
 
 
-def nombre (item):
-    '''sirve para ordenar por sublistas convertidas a numeros en este caso la altura '''
+def nombre (item):    
     return (item['name'])
 
 sw_data.sort(key=nombre)
 
 for index, character in enumerate(sw_data):
-    
-    print(character['name'],'su raza es: ', character['species'],'Su planeta de origen es :', character['homeworld'])
+        print(character['name'],'su raza es: ', character['species'],'Su planeta de origen es :', character['homeworld'])
 
 
 
